@@ -13,6 +13,10 @@
     color: #333;
     text-decoration: none;
 }
+.edit-header a:first-child{
+    border-right: 2px solid #333;
+    padding-right: 10px;
+}
 #btn{
     width: 200px;
     height: 40px;

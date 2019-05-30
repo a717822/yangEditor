@@ -34,6 +34,8 @@
             fileName:'file',
             fileUrl:'',
 
+
+
             // 字体颜色
             fontColors:['#000' , '#eeece0' , '#1c487f' , '#4d80bf' ,
                         '#c24f4a' , '#8baa4a' , '#7b5ba1' , '#46acc8' ,
@@ -307,18 +309,13 @@
         },
 
         // 创建超链接
-        createLink:function () {
-            return '<div class="editor-tool">\n' +
-                '            <button class="editor-btn" data-type="createLink" title="创建超链接">\n' +
-                '                <i class="iconfont icon-link"></i>\n' +
-                '            </button>\n' +
-                '   </div>'
-        },
-
-        // 插入HTML
-        insertHTML:function () {
-
-        },
+        // createLink:function () {
+        //     return '<div class="editor-tool">\n' +
+        //         '            <button class="editor-btn" data-type="createLink" title="创建超链接">\n' +
+        //         '                <i class="iconfont icon-link"></i>\n' +
+        //         '            </button>\n' +
+        //         '   </div>'
+        // },
 
         // 插入图片
         insertImage:function () {
@@ -331,8 +328,17 @@
         },
     };
 
+    // 获取光标位置
+    let range;
+
     // 定义editor的方法
     editor.prototype = {
+        saveRange:function(){
+            let selection = window.getSelection();
+            let range = selection.getRangeAt(0);
+
+            console.log(range);
+        },
 
         // 初始化编辑器
         initEditor:function(){
@@ -348,6 +354,11 @@
 
            // 添加点击事件
            this.bindEvent();
+
+            let selection = getSelection();
+            let range = selection.getRangeAt(0);
+            console.log(range);
+            // range.setSelectionRange(0 , 10)
         },
 
         // 操作方法
@@ -400,6 +411,8 @@
 
         // 绑定事件
         bindEvent:function () {
+            $('.editor-content').focus();
+
             let _this = this;
 
             $('.editor-btn').on('click' , function () {
@@ -485,6 +498,17 @@
 
                         }else{
 
+
+                            let input = '<div class="input_wrap">' +
+                                            '<input type="text" id="img_url" placeholder="请输入网络图片url链接" />' +
+                                        '</div>';
+
+                            // 添加模态框
+                            _this.Modal({
+                                title:'添加网络图片',
+                                content:input,
+                                type:'insertImage'
+                            });
                         }
                         break;
                     default:
@@ -492,19 +516,60 @@
                         break;
                 }
             });
+            // $(document).on('keydown' , function (e) {
+            //     console.log(e.keyCode);
+            //     if(e.keyCode === 9){
+            //         _this.doCommend('indent' , null)
+            //     }
+            // })
         },
 
         // 设置弹出模态框
         Modal:function (config) {
+            let _this = this;
+            config.title = config.title || '';
+            config.content = config.content || '';
+            config.type = config.type || '';
+
+            let html = '<div class="modal-content">\n' +
+                '            <div class="mask"></div>\n' +
+                '            <div class="mask-wrap">\n' +
+                '                <div class="modal">\n' +
+                '                    <div class="modal-title">'+config.title+'</div>\n' +
+                '                    <div class="modal-body">'+config.content+'</div>\n' +
+                '                    <div class="modal-footer clearfix">\n' +
+                '                        <button id="confirm">确认</button>\n' +
+                '                        <button id="cancel">取消</button>\n' +
+                '                    </div>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '        </div>';
+
+            this.$element.append(html);
+
+            // 取消
+            $('#cancel').on('click',function () {
+                _this.$element.children('.modal-content').remove()
+            });
+
+            // 确认
+            $('#confirm').on('click' , function () {
+                $('.editor-content').focus();
+
+                let val = $('#img_url').val()?$('#img_url').val():null;
+                _this.doCommend(config.type , val);
+
+                _this.$element.children('.modal-content').remove()
+            });
 
         },
     };
 
+
+
     $.fn.yangEditor=function(options){
         return new editor($(this),options);
     }
-
-    
 
 
 })(jQuery);

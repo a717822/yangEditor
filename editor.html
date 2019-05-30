@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="edit-header">
-    <span>富文本编辑器version0.1.0 预览版</span>
+    <span>富文本编辑器 (v0.1.0 预览版)</span>
     <div style="float: right">
         <a href="https://www.yangzilong.cn/">我的博客</a>
         <a href="https://github.com/a717822/yangEditor">Github</a>
@@ -182,7 +182,9 @@
 <script src="./js/jquery.editor.js"></script>
 <script>
     $(function () {
-        let editor = $('#test').yangEditor();
+        let editor = $('#test').yangEditor({
+            imgUploadMode:'url'
+        });
 
         // 初始化编辑器
         editor.initEditor();
