@@ -1,0 +1,129 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/*清除浮动*/
+.clearfix{
+    zoom: 1;
+}
+.clearfix:before , .clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+.editor-container{
+    width: 100%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.editor-tools{
+    padding: 10px;
+}
+
+.editor-tool{
+    position: relative;
+}
+.editor-tool , .editor-tool-color{
+    float: left;
+    width: 5%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.editor-tool:last-child{
+    margin-right: 0;
+}
+.editor-tool:hover{
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.tool-active{
+    background-color: #eee;
+    border: 1px solid #eee;
+}
+.editor-btn , .btn{
+    background-color: inherit;
+    border: none;
+    height: 40px;
+    width: 100%;
+    cursor: pointer;
+}
+
+
+.editor-tool i , .editor-tool-color i{
+    font-size: 30px;
+    color: #333;
+}
+
+.editor-content{
+    padding: 10px;
+    height: 500px;
+    border-top: 1px solid #eee;
+    overflow: auto;
+    color: #333;
+}
+
+.edit-btn:hover{
+    background-color: #eee;
+}
+.bg{
+    width: 15%;
+}
+.bg .edit-btn{
+    float: left;
+    width: 25%;
+}
+
+.dropdown-menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.editor-content ul,ol{
+    padding-left: 20px;
+}
+.tab{
+    padding: 0 10px;
+}
+.tab .tab_nav span{
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+.tab .tab_nav span.active{
+    border-bottom: 1px solid #333;
+}
+.tab_content{
+    padding: 50px 20px;
+    text-align: center;
+    display: none;
+}
+
+.tab_content i{
+    font-size: 80px;
+}

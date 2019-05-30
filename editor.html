@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>富文本编辑器</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_421566_iu77l5h7hp.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<header class="edit-header">
+    <span>富文本编辑器version0.1.0 预览版</span>
+    <div style="float: right">
+        <a href="https://www.yangzilong.cn/">我的博客</a>
+        <a href="https://github.com/a717822/yangEditor">Github</a>
+    </div>
+</header>
+
+<div class="content">
+    <div id="test"></div>
+    <button id="btn">获取html</button>
+</div>
+
+
+<div class="markdown">
+    <h2>yangEditor</h2>
+    <h3>简介</h3>
+    <p>通过document.execCommand()方法，自己封装了一个简单的富文本编辑器jquery插件</p>
+    <p>其中可能有点功能不全，或者功能上出现某种问题，后期将会逐渐添加上并且改正相关问题</p>
+    <h3>API</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>参数</th>
+                <th>说明</th>
+                <th>类型</th>
+                <th>默认值</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>options</td>
+                <td>配置富文本编辑器</td>
+                <td>Object</td>
+                <td>见下表</td>
+            </tr>
+            <tr>
+                <td>options.menus</td>
+                <td>配置富文本编辑器菜单</td>
+                <td>Array</td>
+                <td>
+                    // 字体大小 ， 段落/标题 ， 字体颜色 ， 粗体 ,斜体 ， 下划线 ， 删除线 ， 背景颜色
+                    ,左对齐 ， 居中对齐 ， 右对齐
+                    ,有序序列 ， 无序序列
+                    ,取消撤销 ， 撤销 ， 插入图片<br />
+                    ['fontSize' , 'formatBlock' , 'foreColor' , 'bold' ,
+                    'italic' , 'underline' , 'strikeThrough' , 'backColor' ,
+                    'justifyLeft' , 'justifyCenter' , 'justifyRight' ,
+                    'insertOrderedList' , 'insertUnorderedList' ,
+                    'redo' , 'undo' , 'insertImage']</td>
+            </tr>
+            <tr>
+                <td>options.imgUploadMode</td>
+                <td>富文本编辑器图片上传模式</td>
+                <td>String</td>
+                <td>
+                    // url链接和本地图片 <br />
+                    // url | local <br />
+                    'local'
+                </td>
+            </tr>
+            <tr>
+                <td>options.isBase64</td>
+                <td>图片是否是Base64（imgUploadMode = 'local'）时使用</td>
+                <td>Bool</td>
+                <td>
+                    // true | false <br />
+                    true
+                </td>
+            </tr>
+            <tr>
+                <td>options.fileName</td>
+                <td>图片上传到服务器的name值（当isBase64 = false）</td>
+                <td>String</td>
+                <td>'file'</td>
+            </tr>
+            <tr>
+                <td>options.fileUrl</td>
+                <td>图片上传到服务器的地址（当isBase64 = false）</td>
+                <td>String</td>
+                <td>''</td>
+            </tr>
+            <tr>
+                <td>options.fontColors</td>
+                <td>富文本菜单字体颜色配置</td>
+                <td>Array</td>
+                <td>['#000' , '#eeece0' , '#1c487f' , '#4d80bf' ,
+                    '#c24f4a' , '#8baa4a' , '#7b5ba1' , '#46acc8' ,
+                    '#f9963b' ,'#ffffff']</td>
+            </tr>
+            <tr>
+                <td>options.bgColors</td>
+                <td>富文本菜单字体颜色配置</td>
+                <td>Array</td>
+                <td>['#000' , '#eeece0' , '#1c487f' , '#4d80bf' ,
+                    '#c24f4a' , '#8baa4a' , '#7b5ba1' , '#46acc8' ,
+                    '#f9963b' ,'#ffffff']</td>
+            </tr>
+            <tr>
+                <td>options.uploadImg</td>
+                <td>图片上传到服务器的回调函数（当isBase64 = false)</td>
+                <td>Function</td>
+                <td>--</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>METHODS</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>参数</th>
+                <th>说明</th>
+                <th>类型</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>initEditor</td>
+                <td>初始化富文本编辑器</td>
+                <td>Function()</td>
+            </tr>
+            <tr>
+                <td>doCommend</td>
+                <td>富文本操作方法</td>
+                <td>Function(key , value)</td>
+            </tr>
+            <tr>
+                <td>getHtml</td>
+                <td>获取HTML字符串</td>
+                <td>Function()</td>
+            </tr>
+            <tr>
+                <td>setHtml</td>
+                <td>设置html</td>
+                <td>Function(html)</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>如何使用</h3>
+    <h3>引入css</h3>
+    <pre>
+        <code>
+            <span>&lt;link rel="stylesheet" href="http://at.alicdn.com/t/font_421566_iu77l5h7hp.css"&gt;</span>
+            <span>&lt;link rel="stylesheet" href="css/editor.css"&gt;</span>
+        </code>
+    </pre>
+    <h3>引入js</h3>
+    <pre>
+        <code>
+            <span>&lt;script src="jquery.min.js" /&gt;</span>
+            <span>&lt;script src="jquery.editor.js" /&gt;</span>
+        </code>
+    </pre>
+    <h3>使用</h3>
+    <pre>
+        <code>
+            <span>&lt;script&gt;</span>
+            <span>$(function () {</span>
+            <span>let editor = $('#test').yangEditor();</span>
+            <span>// 初始化编辑器</span>
+            <span>editor.initEditor();</span>
+            <span> });</span>
+            <span> &lt; /script&gt;</span>
+        </code>
+    </pre>
+</div>
+
+
+</body>
+<script src="./js/jquery.min.js"></script>
+
+<script src="./js/jquery.editor.js"></script>
+<script>
+    $(function () {
+        let editor = $('#test').yangEditor();
+
+        // 初始化编辑器
+        editor.initEditor();
+
+        let html = '<p>欢迎使用yangEditor 富文本编辑器!!!</p>';
+        editor.setHtml(html);
+
+        $('#btn').on('click',function () {
+           let txt =  editor.getHtml();
+           alert(txt);
+        });
+    });
+</script>
+
+</html>
