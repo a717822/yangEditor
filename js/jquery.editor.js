@@ -22,7 +22,7 @@
                 'italic' , 'underline' , 'strikeThrough' , 'backColor' ,
                 'justifyLeft' , 'justifyCenter' , 'justifyRight' ,
                 'insertOrderedList' , 'insertUnorderedList' ,
-                'redo' , 'undo' , 'insertImage' , 'createLink'],
+                'redo' , 'undo' , 'insertImage'],
 
             // 图片上传类型
             // url链接和本地图片
